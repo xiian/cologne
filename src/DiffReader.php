@@ -67,7 +67,9 @@ class DiffReader implements FileLineFilterInterface
             }
             switch($line[0]) {
                 case 'd':
-                    $this->parseDiff($line);
+                    if ($line[1] == 'i') {
+                        $this->parseDiff($line);
+                    }
                     break;
                 case '@':
                     $this->parseContext($line);
@@ -84,7 +86,7 @@ class DiffReader implements FileLineFilterInterface
             return;
         }
 
-        throw new \Exception('This diff aint legit! ' . $line);
+        throw new \Exception('This diff aint legit! (' . $line . ')');
     }
 
     protected function parseContext($line)

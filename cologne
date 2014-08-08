@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+foreach (array(__DIR__ . '/../../autoload.php', __DIR__ . '/../vendor/autoload.php', __DIR__ . '/vendor/autoload.php', null) as $file) {
+    if (file_exists($file)) {
+        require($file);
+        break;
+    }
+}
+
+if (is_null($file)) {
+    die('Composer aint installed right.' . PHP_EOL);
+}
+
+//Run the damn thing
+require __DIR__ . '/branch_inspect.php';

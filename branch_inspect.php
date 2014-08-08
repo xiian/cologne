@@ -4,7 +4,7 @@ require('src/CheckStyleFilter.php');
 
 $from = '08797be7e1417f718247955fe6bef5e1127f68fb';
 $to = 'master';
-$path = '/Users/Tom/Sites/vimeo/vimeo-github';
+$path = getcwd();
 
 // Executables
 $git_cmd = 'git';
@@ -20,7 +20,13 @@ $diff_output = shell_exec(sprintf('%s diff %s', $git_cmd, escapeshellarg($from))
 $diffreader = new DiffReader();
 $diffreader->setBasePath($path);
 $diffreader->setString($diff_output);
-$diffreader->parse();
+try {
+    $diffreader->parse();
+} catch (\Exception $e) {
+    echo $e->getMessage() . PHP_EOL;
+    echo $diff_output;
+    die(PHP_EOL);
+}
 
 // Run phpcs just on the files in the diff, returning checkstyle xml
 $concatedFiles = join(' ', array_map('escapeshellarg', $diffreader->getFiles()));

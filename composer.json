@@ -8,5 +8,15 @@
             "email": "tomsartain@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "squizlabs/php_codesniffer": "dev-master"
+    },
+    "bin": [
+        "cologne"
+    ],
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    }
 }
