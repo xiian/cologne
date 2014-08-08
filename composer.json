@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-        "squizlabs/php_codesniffer": "dev-master"
+        "squizlabs/php_codesniffer": "dev-master",
+        "symfony/console": "2.4.0"
     },
     "bin": [
         "cologne"
