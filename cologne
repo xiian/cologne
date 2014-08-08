@@ -12,4 +12,9 @@ if (is_null($file)) {
 }
 
 //Run the damn thing
-require __DIR__ . '/branch_inspect.php';
+use Symfony\Component\Console\Application;
+$application = new Application();
+$application->add(new \Cologne\Commands\RunCommand);
+$application->add(new \Cologne\Commands\DiffCommand);
+$application->add(new \Cologne\Commands\CheckstyleCommand);
+$application->run();
