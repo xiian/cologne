@@ -1,0 +1,12 @@
+{
+    "name": "xiian/cologne",
+    "description": "Only sniff out certain parts",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Tom Sartain",
+            "email": "tomsartain@gmail.com"
+        }
+    ],
+    "require": {}
+}
