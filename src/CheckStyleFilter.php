@@ -42,6 +42,32 @@ class CheckStyleFilter {
         );
     }
 
+    /**
+     * @param \Symfony\Component\Console\Helper\TableHelper $table
+     * @param string $base_path
+     *
+     * @return \Symfony\Component\Console\Helper\TableHelper
+     */
+    public function asTable(\Symfony\Component\Console\Helper\TableHelper $table, $base_path = '')
+    {
+        if (count($this->report->file) == 0) {
+            return $table;
+        }
+        $table->setHeaders(['Filename', 'Line', 'Col', 'Level', 'Message']);
+        foreach($this->report->file as $file) {
+            foreach($file->error as $error) {
+                $table->addRow([
+                        self::relpath($file['name'], $base_path),
+                        $error['line'],
+                        $error['column'],
+                        $error['severity'],
+                        $error['message']
+                    ]);
+            }
+        }
+        return $table;
+    }
+
     public function addFilter(FileLineFilterInterface $filter)
     {
         $this->filter = $filter;
