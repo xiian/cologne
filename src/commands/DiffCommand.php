@@ -77,6 +77,7 @@ class DiffCommand extends Command
                     ['git', $git_cmd]
                 ]);
             $table->render($output);
+            $table->setHeaders([])->setRows([]);
         }
 
         // Get to the root of the matter
