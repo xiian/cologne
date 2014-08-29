@@ -23,6 +23,25 @@ class CheckStyleFilter {
         return $this->report->asXML();
     }
 
+    /**
+     * Determine the relative path for a given path
+     *
+     * @todo Extract elsewhere. This has nothing to do with Checkstyle
+     * @param        $target
+     * @param string $base_path
+     *
+     * @return string
+     */
+    public static function relpath($target, $base_path = '')
+    {
+        return '.' . DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR,
+            array_diff_assoc(
+                explode(DIRECTORY_SEPARATOR, $target),
+                explode(DIRECTORY_SEPARATOR, $base_path)
+            )
+        );
+    }
+
     public function addFilter(FileLineFilterInterface $filter)
     {
         $this->filter = $filter;
