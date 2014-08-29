@@ -26,7 +26,7 @@ class CheckstyleCommand extends Command
     {
         $this
             ->setName('checkstyle')
-            ->setDescription('Run the whole cologne suite')
+            ->setDescription('Run checkstyle')
             ->addOption(
                 'hide-output',
                 null,
