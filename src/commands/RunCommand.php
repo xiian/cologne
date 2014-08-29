@@ -76,7 +76,7 @@ class RunCommand extends Command
         // Call the diff maker
         /* @var $diff_command \Cologne\Commands\DiffCommand */
         $diff_command = $this->getApplication()->find('diff');
-        $this->callAgain($diff_command, $input, $output);
+        $this->callAgain($diff_command, $input, $output, ['--hide-output' => true]);
 
         // Get the diff reader
         $diffreader = $diff_command->getDiffReader();
