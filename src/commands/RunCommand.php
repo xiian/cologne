@@ -48,6 +48,13 @@ class RunCommand extends Command
                 'master'
             )
             ->addOption(
+                'format',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Format of output',
+                'table'
+            )
+            ->addOption(
                 'path',
                 null,
                 InputOption::VALUE_OPTIONAL,
@@ -99,6 +106,14 @@ class RunCommand extends Command
         $checkstyle->filter();
 
         // Output
-        echo $checkstyle->asXML();
+        switch($input->getOption('format')) {
+            case 'xml':
+                $output->write($checkstyle->asXML());
+                break;
+            default:
+                $table = $checkstyle->asTable($this->getHelper('table'), getcwd());
+                $table->render($output);
+                break;
+        }
     }
 }
