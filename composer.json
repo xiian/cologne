@@ -10,7 +10,7 @@
     ],
     "require": {
         "squizlabs/php_codesniffer": "dev-master",
-        "symfony/console": "2.4.0"
+        "symfony/console": "2.*"
     },
     "bin": [
         "cologne"
